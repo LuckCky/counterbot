@@ -33,7 +33,6 @@ def choose_message(messages, end_random=50):
 def echo_all(message):
     if message.text.startswith('отчёт') or message.text.startswith('отчет'):
         page_name = message.text.split(':')[1].strip()
-        print(page_name)
         fans = get_fans(page_name)
         if isinstance(fans, int):
             reply = 'В группе ФБ {} сейчас {} подписчиков'.format(page_name, fans)
