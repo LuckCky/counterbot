@@ -6,6 +6,7 @@ import time
 import telebot
 
 import conf
+from fb import get_fans
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -30,6 +31,14 @@ def choose_message(messages, end_random=50):
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def echo_all(message):
+    if message.text.startswith('отчёт') or message.text.startswith('отчет'):
+        page_name = message.text.split(':')[1].strip
+        fans = get_fans(page_name)
+        if isinstance(fans, int):
+            reply = 'В группе ФБ {} сейчас {} подписчиков'.format(page_name, fans)
+        else:
+            reply = fans
+        bot.send_message(message.chat.id, reply)
     bot.send_message(message.chat.id, message.text)
 
 
