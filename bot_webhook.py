@@ -32,7 +32,7 @@ def choose_message(messages, end_random=50):
                                     'voice', 'location', 'contact'])
 def echo_all(message):
     if message.text.startswith('отчёт') or message.text.startswith('отчет'):
-        page_name = message.text.split(':')[1].strip
+        page_name = message.text.split(':')[1].strip()
         print(page_name)
         fans = get_fans(page_name)
         if isinstance(fans, int):
@@ -40,6 +40,7 @@ def echo_all(message):
         else:
             reply = fans
         bot.send_message(message.chat.id, reply)
+        return
     bot.send_message(message.chat.id, message.text)
 
 
