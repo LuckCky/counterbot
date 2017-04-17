@@ -50,7 +50,9 @@ def echo_all(message):
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
         elif network.lower() == 'вк':
+            print('STARTING VK')
             fans = get_vk_fans(page_name)
+            print('FANS', fans)
         else:
             fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):
