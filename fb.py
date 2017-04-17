@@ -4,7 +4,7 @@ import facebook
 token = os.environ.get('FB_TOKEN')
 
 
-def get_fans(page_name):
+def get_fb_fans(page_name):
     graph = facebook.GraphAPI(token)
     args = {'fields': 'fan_count'}
     try:

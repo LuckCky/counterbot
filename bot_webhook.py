@@ -6,7 +6,8 @@ import time
 import telebot
 
 import conf
-from fb import get_fans
+from fb import get_fb_fans
+from vk_info import get_vk_fans
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -31,11 +32,24 @@ def choose_message(messages, end_random=50):
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def echo_all(message):
-    if message.text.startswith('отчёт') or message.text.startswith('отчет'):
-        page_name = message.text.split(':')[1].strip()
-        fans = get_fans(page_name)
+    if message.text.startswith('отчёт') or message.text.startswith('отчет') \
+            or message.text.startswith('Отчет') or message.text.startswith('Отчёт'):
+        command = message.text.split(':')[1].strip()
+        if command.split(' ') < 2:
+            bot.send_message(message.chat.id, "Чёт мне не хватает. То ли названия соцсети, то ли группы")
+            return
+        elif command.split(' ') > 3:
+            bot.send_message(message.chat.id, "Чёт мне мне лишнего пишете")
+            return
+        network, page_name = command.split(' ').strip()
+        if network.lower() == 'фб':
+            fans = get_fb_fans(page_name)
+        elif network.lower() == 'вк':
+            fans = get_vk_fans(page_name)
+        else:
+            fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):
-            reply = 'В группе ФБ {} сейчас {} подписчиков'.format(page_name, fans)
+            reply = 'В группе {} {} сейчас {} подписчиков'.format(network, page_name, fans)
         else:
             reply = fans
         bot.send_message(message.chat.id, reply)
