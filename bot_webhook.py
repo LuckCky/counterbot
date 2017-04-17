@@ -36,10 +36,10 @@ def echo_all(message):
             or message.text.startswith('Отчет') or message.text.startswith('Отчёт'):
         command = message.text.split(':')[1].strip()
         print('command', command)
-        if command.split(' ') < 2:
+        if len(command.split(' ')) < 2:
             bot.send_message(message.chat.id, "Чёт мне не хватает. То ли названия соцсети, то ли группы")
             return
-        elif command.split(' ') > 3:
+        elif len(command.split(' ')) > 3:
             bot.send_message(message.chat.id, "Чёт мне мне лишнего пишете")
             return
         print(command.split(' '))
