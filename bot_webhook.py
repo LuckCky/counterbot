@@ -35,13 +35,17 @@ def echo_all(message):
     if message.text.startswith('отчёт') or message.text.startswith('отчет') \
             or message.text.startswith('Отчет') or message.text.startswith('Отчёт'):
         command = message.text.split(':')[1].strip()
+        print('command', command)
         if command.split(' ') < 2:
             bot.send_message(message.chat.id, "Чёт мне не хватает. То ли названия соцсети, то ли группы")
             return
         elif command.split(' ') > 3:
             bot.send_message(message.chat.id, "Чёт мне мне лишнего пишете")
             return
+        print(command.split(' '))
         network, page_name = command.split(' ').strip()
+        print(network)
+        print(page_name)
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
         elif network.lower() == 'вк':
