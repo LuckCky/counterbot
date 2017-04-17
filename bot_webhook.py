@@ -43,7 +43,8 @@ def echo_all(message):
             bot.send_message(message.chat.id, "Чёт мне мне лишнего пишете")
             return
         print(command.split(' '))
-        network, page_name = command.split(' ').strip()
+        network = command.split(' ')[0].strip()
+        page_name = command.split(' ')[1].strip()
         print(network)
         print(page_name)
         if network.lower() == 'фб':
