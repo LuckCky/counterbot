@@ -13,6 +13,7 @@ def get_vk_fans(group_name):
         else:
             return e.message
     try:
-        return group_info['members_count']
+        members_count = group_info[0]['members_count']
+        return members_count
     except KeyError:
         return None
