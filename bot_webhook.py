@@ -32,17 +32,9 @@ def choose_message(messages, end_random=50):
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def echo_all(message):
-    if message.text.startswith('отчёт') or message.text.startswith('отчет') \
-            or message.text.startswith('Отчет') or message.text.startswith('Отчёт'):
-        command = message.text.split(':')[1].strip()
-        if len(command.split(' ')) < 2:
-            bot.send_message(message.chat.id, "Чёт мне не хватает. То ли названия соцсети, то ли группы")
-            return
-        elif len(command.split(' ')) > 3:
-            bot.send_message(message.chat.id, "Чёт мне мне лишнего пишете")
-            return
-        network = command.split(' ')[0].strip()
-        page_name = command.split(' ')[1].strip()
+    network = message.text.split(' ')[0].strip()
+    if network.lower() in ['фб', 'вк']:
+        page_name = message.text.split(' ')[1].strip()
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
         elif network.lower() == 'вк':
@@ -55,7 +47,6 @@ def echo_all(message):
             reply = fans
         bot.send_message(message.chat.id, reply)
         return
-    bot.send_message(message.chat.id, message.text)
 
 
 class WebhookServer(object):
