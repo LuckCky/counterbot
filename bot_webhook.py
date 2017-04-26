@@ -7,6 +7,7 @@ import telebot
 
 import conf
 from fb import get_fb_fans
+from ok import get_ok_fans
 from vk_info import get_vk_fans
 
 token = os.environ.get('BOT_TOKEN')
@@ -31,14 +32,16 @@ def choose_message(messages, end_random=50):
 
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
-def echo_all(message):
+def get_fans(message):
     network = message.text.split(' ')[0].strip()
-    if network.lower() in ['фб', 'вк']:
+    if network.lower() in ['фб', 'вк', 'ок', 'ok']:
         page_name = message.text.split(' ')[1].strip()
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
         elif network.lower() == 'вк':
             fans = get_vk_fans(page_name)
+        elif network.lower() == 'ок' or network.lower() == 'ok':
+            fans = get_ok_fans(page_name)
         else:
             fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):
