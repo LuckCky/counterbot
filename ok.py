@@ -24,7 +24,7 @@ def get_ok_fans(page_name):
     try:
         group_id = ok_groups[page_name]
     except KeyError:
-        return 'В моём спике нет такой группы. Проверьте настройки или написание'
+        return 'В моём списке нет такой группы. Проверьте настройки или написание'
     sig = count_sig(group_id)
     url = 'https://api.ok.ru/fb.do' \
           '?application_key={0}' \
