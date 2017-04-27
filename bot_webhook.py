@@ -1,6 +1,5 @@
 import cherrypy
 import os
-import random
 import time
 
 import telebot
@@ -8,7 +7,9 @@ import telebot
 import conf
 from fb import get_fb_fans
 from ok import get_ok_fans
+from twi import get_twi_fans
 from vk_info import get_vk_fans
+from utils import message_parser
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -22,19 +23,11 @@ WEBHOOK_URL_PATH = "/{}/".format(token)
 bot = telebot.TeleBot(token)
 
 
-def choose_message(messages, end_random=50):
-    num = random.randint(0, end_random)
-    if num < len(messages):
-        return messages[num]
-    else:
-        return None
-
-
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def get_fans(message):
     network = message.text.split(' ')[0].strip()
-    if network.lower() in ['фб', 'вк', 'ок', 'ok']:
+    if network.lower() in ['фб', 'вк', 'ок', 'ok', 'тви']:
         page_name = message.text.split(' ')[1].strip()
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
@@ -42,6 +35,8 @@ def get_fans(message):
             fans = get_vk_fans(page_name)
         elif network.lower() == 'ок' or network.lower() == 'ok':
             fans = get_ok_fans(page_name)
+        elif network.lower() == 'тви':
+            fans = get_twi_fans(page_name)
         else:
             fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):
