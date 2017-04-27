@@ -4,9 +4,9 @@ import requests
 
 from ok_groups import ok_groups
 
-application_id = os.environ.get('APPLICATION_ID')
-application_key = os.environ.get('APPLICATION_KEY')
-application_secret_key = os.environ.get('APPLICATION_SECRET_KEY')
+application_id = os.environ.get('OK_APPLICATION_ID')
+application_key = os.environ.get('OK_APPLICATION_KEY')
+application_secret_key = os.environ.get('OK_APPLICATION_SECRET_KEY')
 
 
 def count_sig(group_id):
