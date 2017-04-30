@@ -2,7 +2,7 @@ import hashlib
 import os
 import requests
 
-from ok_groups import ok_groups
+from groups import ok_groups
 
 application_id = os.environ.get('OK_APPLICATION_ID')
 application_key = os.environ.get('OK_APPLICATION_KEY')
@@ -34,5 +34,8 @@ def get_ok_fans(page_name):
           '&uids={1}' \
           '&sig={2}'.format(application_key, group_id, sig)
     r = requests.get(url)
-    fans = r.json()[0]['members_count']
+    try:
+        fans = r.json()[0]['members_count']
+    except KeyError:
+        return 'ODNOKLASSNIKI вернули странный ответ, который я не могу распарсить: {}'.format(r.content)
     return fans

@@ -9,6 +9,7 @@ from fb import get_fb_fans
 from ok import get_ok_fans
 from twi import get_twi_fans
 from vk_info import get_vk_fans
+from youtube import get_youtube_fans
 from utils import message_parser
 
 token = os.environ.get('BOT_TOKEN')
@@ -27,7 +28,7 @@ bot = telebot.TeleBot(token)
                                     'voice', 'location', 'contact'])
 def get_fans(message):
     network = message.text.split(' ')[0].strip()
-    if network.lower() in ['фб', 'вк', 'ок', 'ok', 'тви']:
+    if network.lower() in ['фб', 'вк', 'ок', 'ok', 'тви', 'тытруба', 'youtube']:
         page_name = message.text.split(' ')[1].strip()
         if network.lower() == 'фб':
             fans = get_fb_fans(page_name)
@@ -37,6 +38,8 @@ def get_fans(message):
             fans = get_ok_fans(page_name)
         elif network.lower() == 'тви':
             fans = get_twi_fans(page_name)
+        elif network.lower() == 'тытруба' or network.lower() == 'youtube':
+            fans = get_youtube_fans(page_name)
         else:
             fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):

@@ -29,3 +29,7 @@ ok_groups = {
     'probujut': '53038419345611',
     'lilu': '52774729351371'
 }
+
+youtube_groups = {
+    'afisha': 'UCUVHBFQPESSckeAQYzvvYrA'
+}

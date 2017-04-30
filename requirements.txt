@@ -2,4 +2,5 @@ cherrypy
 facebook-sdk
 pytelegrambotapi
 python-twitter
+python-instagram
 vk
