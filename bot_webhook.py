@@ -39,7 +39,7 @@ def get_fans(message):
         elif network.lower() == 'тви':
             fans = get_twi_fans(page_name)
         elif network.lower() == 'тытруба' or network.lower() == 'youtube':
-            fans = get_youtube_fans(page_name)
+            fans = type(get_youtube_fans(page_name))
         else:
             fans = 'А соцсеть то указать забыли!'
         if isinstance(fans, int):
