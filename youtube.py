@@ -15,7 +15,7 @@ def get_youtube_fans(group_name):
         format(group_url, api_key)
     r = requests.get(url)
     try:
-        fans = r.json()['items'][0]['statistics']['subscriberCount']
+        fans = int(r.json()['items'][0]['statistics']['subscriberCount'])
     except KeyError:
         return 'Youtube вернул странный ответ, который я не могу распарсить: {}'.format(r.content)
     print(type(fans))
