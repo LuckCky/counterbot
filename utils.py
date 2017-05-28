@@ -35,16 +35,19 @@ def fire_up_db():
     try:
         cursor.execute(conf.create_aliases_table)
         connection.commit()
+        print('create_aliases_table')
     except:
         pass
     try:
         cursor.execute(conf.create_ids_table)
         connection.commit()
+        print('create_ids_table')
     except:
         pass
     try:
         cursor.execute(conf.create_data_table)
         connection.commit()
+        print('create_data_table')
     except:
         pass
     finally:
