@@ -10,7 +10,7 @@ from ok import get_ok_fans
 from twi import get_twi_fans
 from vk_info import get_vk_fans
 from youtube import get_youtube_fans
-from utils import message_parser
+from utils import message_parser, report_needed, fire_up_db
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -27,7 +27,13 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def get_fans(message):
-    network = message.text.split(' ')[0].strip()
+    if report_needed(message.text):
+        resource_name, network = message_parser(message.text)
+    else:
+        return
+
+
+
     if network.lower() in ['фб', 'вк', 'ок', 'ok', 'тви', 'тытруба', 'youtube']:
         page_name = message.text.split(' ')[1].strip()
         if network.lower() == 'фб':
@@ -66,6 +72,7 @@ class WebhookServer(object):
 
 
 if __name__ == "__main__":
+    fire_up_db()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
