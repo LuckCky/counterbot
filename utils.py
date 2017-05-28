@@ -45,9 +45,9 @@ def fire_up_db():
     except:
         pass
     try:
-        cursor.execute(conf.create_data_table)
+        cursor.execute(conf.create_users_count_table)
         connection.commit()
-        print('create_data_table')
+        print('create_users_count_table')
     except:
         pass
     finally:
