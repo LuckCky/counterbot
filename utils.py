@@ -32,7 +32,6 @@ def fire_up_db():
         port=url.port
     )
     cursor = connection.cursor()
-    cursor.execute(conf.create_aliases_table)
     try:
         cursor.execute(conf.create_aliases_table)
         connection.commit()
