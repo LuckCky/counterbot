@@ -11,7 +11,7 @@ from social_stuff.twi import get_twi_fans
 from social_stuff.vk_info import get_vk_fans
 from social_stuff.youtube import get_youtube_fans
 from utils.utils import message_parser, report_needed
-from utils.db_works import fire_up_db
+from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
@@ -73,7 +73,7 @@ class WebhookServer(object):
 
 
 if __name__ == "__main__":
-    fire_up_db()
+    DBWorks().fire_up_db()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
