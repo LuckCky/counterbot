@@ -32,23 +32,21 @@ def fire_up_db():
         port=url.port
     )
     cursor = connection.cursor()
+    cursor.execute(conf.create_aliases_table)
     try:
         cursor.execute(conf.create_aliases_table)
         connection.commit()
-        print('create_aliases_table')
-    except:
-        pass
+    except psycopg2.ProgrammingError:
+        connection.rollback()
     try:
         cursor.execute(conf.create_ids_table)
         connection.commit()
-        print('create_ids_table')
-    except:
-        pass
+    except psycopg2.ProgrammingError:
+        connection.rollback()
     try:
         cursor.execute(conf.create_users_count_table)
         connection.commit()
-        print('create_users_count_table')
-    except:
-        pass
+    except psycopg2.ProgrammingError:
+        connection.rollback()
     finally:
         connection.close()

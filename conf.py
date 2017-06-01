@@ -10,10 +10,10 @@ post_url = 'https://guarded-tundra-24703.herokuapp.com/'
 
 # SQL
 create_aliases_table = "CREATE TABLE aliases ( resourceName VARCHAR(50), aliasesList VARCHAR(1000) ); "
-create_ids_table = "CREATE TABLE ids " \
+create_ids_table = "CREATE TABLE resourceIds " \
                    "( projectID INTEGER, projectName VARCHAR(100), " \
                    "resourceName VARCHAR(100),  siteName VARCHAR(15), " \
                    "netAddress VARCHAR(200) ); "
-create_data_table = "CREATE TABLE data " \
-                   "( projectID INTEGER, date DATETIME, " \
+create_users_count_table = "CREATE TABLE usersCount " \
+                   "( projectID INTEGER, date TIMESTAMP, " \
                    "usersCount INTEGER ); "
