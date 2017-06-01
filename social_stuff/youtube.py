@@ -1,7 +1,8 @@
 import os
+
 import requests
 
-from groups import youtube_groups
+from social_stuff.groups import youtube_groups
 
 api_key = os.environ.get('YOUTUBE_API_KEY')
 

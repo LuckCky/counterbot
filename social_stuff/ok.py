@@ -1,8 +1,9 @@
 import hashlib
 import os
+
 import requests
 
-from groups import ok_groups
+from social_stuff.groups import ok_groups
 
 application_id = os.environ.get('OK_APPLICATION_ID')
 application_key = os.environ.get('OK_APPLICATION_KEY')

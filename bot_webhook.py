@@ -1,16 +1,17 @@
-import cherrypy
 import os
 import time
 
+import cherrypy
 import telebot
 
 import conf
-from fb import get_fb_fans
-from ok import get_ok_fans
-from twi import get_twi_fans
-from vk_info import get_vk_fans
-from youtube import get_youtube_fans
-from utils import message_parser, report_needed, fire_up_db
+from social_stuff.fb import get_fb_fans
+from social_stuff.ok import get_ok_fans
+from social_stuff.twi import get_twi_fans
+from social_stuff.vk_info import get_vk_fans
+from social_stuff.youtube import get_youtube_fans
+from utils.utils import message_parser, report_needed
+from utils.db_works import fire_up_db
 
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
