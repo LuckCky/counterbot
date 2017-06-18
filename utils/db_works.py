@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
 import os
 import urllib.parse
 import psycopg2
@@ -37,3 +38,11 @@ class DBWorks(object):
             self.connection.rollback()
         finally:
             self.connection.close()
+
+    def get_info_no_args(self, statement):
+        self.cursor.execute(statement)
+        return self.cursor.fetchall()
+
+    def get_info_one_arg(self, statement, arg):
+        self.cursor.execute(statement, (arg, ))
+        return self.cursor.fetchall()

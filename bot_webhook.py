@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import time
 
@@ -29,9 +31,14 @@ bot = telebot.TeleBot(token)
                                     'voice', 'location', 'contact'])
 def get_fans(message):
     if report_needed(message.text):
-        resource_name, network = message_parser(message.text)
+        alias, network = message_parser(message.text)
     else:
         return
+    if not alias:
+        bot.send_message(message.chat.id, "Забыли указать ресурс:(")
+        return
+    resource_name =
+    number_of_fans =
 
 
 
