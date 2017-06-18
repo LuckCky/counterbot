@@ -2,7 +2,7 @@
 
 import xlrd
 import conf
-from db_works import DBWorks
+from utils.db_works import DBWorks
 
 
 def insert_aliases():
