@@ -37,8 +37,8 @@ def get_fans(message):
     if not alias:
         bot.send_message(message.chat.id, "Забыли указать ресурс:(")
         return
-    resource_name =
-    number_of_fans =
+    # resource_name =
+    # number_of_fans =
 
 
 
