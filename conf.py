@@ -9,7 +9,10 @@ webhook_listen = '0.0.0.0'
 post_url = 'https://guarded-tundra-24703.herokuapp.com/'
 
 # SQL
-create_aliases_table = "CREATE TABLE aliases ( resourceName VARCHAR(50), aliasesList VARCHAR(1000) ); "
+create_aliases_table = "CREATE TABLE aliases (" \
+                       "id SERIAL, " \
+                       "resourceName VARCHAR(50), " \
+                       "aliasesList VARCHAR(1000) ); "
 create_ids_table = "CREATE TABLE resourceIds " \
                    "( projectID INTEGER, projectName VARCHAR(100), " \
                    "resourceName VARCHAR(100),  siteName VARCHAR(15), " \
@@ -21,5 +24,5 @@ select_all_aliases = "SELECT * from aliases;"
 insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, %s ) ;"
 
 # xls with questions
-rambler_configs_xls = 'Rambler.xls'
-aliases_sheet = 'Алиасы'
+rambler_configs_xls = "Rambler.xls"
+aliases_sheet = "Алиасы"
