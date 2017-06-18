@@ -22,4 +22,4 @@ insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, 
 
 # xls with questions
 rambler_configs_xls = 'Rambler.xls'
-aliases_sheet = 'Данные'
+aliases_sheet = 'Алиасы'
