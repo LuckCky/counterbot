@@ -13,7 +13,7 @@ from social_stuff.ok import get_ok_fans
 from social_stuff.twi import get_twi_fans
 from social_stuff.vk_info import get_vk_fans
 from social_stuff.youtube import get_youtube_fans
-from utils.utils import message_parser, report_needed
+from utils.utils import message_parser, report_needed, get_resource_name_from_alias
 from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
@@ -38,7 +38,8 @@ def get_fans(message):
     if not alias:
         bot.send_message(message.chat.id, "Забыли указать ресурс:(")
         return
-    # resource_name =
+    resource_name = get_resource_name_from_alias(alias)
+    bot.send_message(message.chat.id, "Ваш алиас соответствует ресурсу: {}".format(resource_name))
     # number_of_fans =
 
 
