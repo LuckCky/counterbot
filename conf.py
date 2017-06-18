@@ -12,7 +12,7 @@ post_url = 'https://guarded-tundra-24703.herokuapp.com/'
 create_aliases_table = "CREATE TABLE aliases (" \
                        "id SERIAL, " \
                        "resourceName VARCHAR(50), " \
-                       "aliasesList VARCHAR(1000) ); "
+                       "aliasesList TEXT ); "
 create_ids_table = "CREATE TABLE resourceIds " \
                    "( projectID INTEGER, projectName VARCHAR(100), " \
                    "resourceName VARCHAR(100),  siteName VARCHAR(15), " \
