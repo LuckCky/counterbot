@@ -24,5 +24,5 @@ select_all_aliases = "SELECT * from aliases;"
 insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, %s ) ;"
 
 # xls with questions
-rambler_configs_xls = "Rambler.xls"
+rambler_configs_xls = "utils/Rambler.xls"
 aliases_sheet = "Алиасы"
