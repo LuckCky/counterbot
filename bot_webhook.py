@@ -7,6 +7,7 @@ import cherrypy
 import telebot
 
 import conf
+import utils.fill_db
 from social_stuff.fb import get_fb_fans
 from social_stuff.ok import get_ok_fans
 from social_stuff.twi import get_twi_fans
@@ -81,6 +82,7 @@ class WebhookServer(object):
 
 if __name__ == "__main__":
     DBWorks().fire_up_db()
+    utils.fill_db.main()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
