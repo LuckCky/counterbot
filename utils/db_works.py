@@ -45,7 +45,7 @@ class DBWorks(object):
 
     def get_info_one_arg(self, statement, arg):
         print("!!!!!!!!!STARTED get_info_one_arg")
-        print(self.cursor.mogrify(statement, (arg, )))
+        print("!!!!!!!mogrify", self.cursor.mogrify(statement, (arg, )))
         self.cursor.mogrify(statement, (arg, ))
         self.cursor.execute(statement, (arg, ))
         return self.cursor.fetchall()
