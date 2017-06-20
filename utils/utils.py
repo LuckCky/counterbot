@@ -15,7 +15,10 @@ def report_needed(message):
 
 def message_parser(message):
     message_split = message.split(' ')
-    alias = message_split[1].strip()
+    if len(message_split) >= 1:
+        alias = message_split[1].strip()
+    else:
+        alias = None
     if len(message_split) >= 3:
         network = message_split[-1].strip()
     else:
