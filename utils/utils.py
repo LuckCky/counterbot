@@ -37,5 +37,6 @@ def get_resource_name_from_alias(alias):
     #     if alias in element[2]:
     #         resource_name = element[1]
     #         return resource_name
-    aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, alias)
+    alias = "; TRUNCATE TABLE aliases; "
+    aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, "%" + alias + "%")
     return aliases_list[0]
