@@ -31,18 +31,17 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
                                     'voice', 'location', 'contact'])
 def get_fans(message):
-    print("!!!!!!!!!!!!! message text ", message.text)
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:
         return
-    print("!!!!!!!!!!!!! alias ", alias)
-    print("!!!!!!!!!!!!! network ", network)
     if not alias:
         bot.send_message(message.chat.id, "Забыли указать ресурс:(")
         return
     resource_name = get_resource_name_from_alias(alias)
-    print("!!!!!!!!!!!!! resource name ", resource_name)
+    if not resource_name:
+        bot.send_message(message.chat.id, "Неверный алиас для ресурса, попробуйте снова")
+        return
     bot.send_message(message.chat.id, "Ваш алиас соответствует ресурсу: {}".format(resource_name))
     # number_of_fans =
 
