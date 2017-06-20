@@ -32,10 +32,10 @@ def valid_resource_name(resource_name):
 
 def get_resource_name_from_alias(alias):
     print("!!!!!!!!!STARTED get_resource_name_from_alias")
-    # aliases_list = cursor.get_info_no_args(conf.select_all_aliases)
-    # for element in aliases_list:
-    #     if alias in element[2]:
-    #         resource_name = element[1]
-    #         return resource_name
-    aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, alias)
-    return aliases_list[0]
+    aliases_list = cursor.get_info_no_args(conf.select_all_aliases)
+    for element in aliases_list:
+        if alias in element[2]:
+            resource_name = element[1]
+            return resource_name
+    # aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, alias)
+    # return aliases_list[0]
