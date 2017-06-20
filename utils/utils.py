@@ -34,4 +34,6 @@ def get_resource_name_from_alias(alias):
     aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, "%" + alias + "%")
     if len(aliases_list) >= 2:
         return False
+    if not aliases_list:
+        return None
     return aliases_list[0]
