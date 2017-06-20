@@ -36,4 +36,4 @@ def get_resource_name_from_alias(alias):
         return False
     if not aliases_list:
         return None
-    return aliases_list#[0][0]
+    return aliases_list[0][0]
