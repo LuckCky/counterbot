@@ -40,8 +40,6 @@ class DBWorks(object):
             self.connection.close()
 
     def get_info_no_args(self, statement):
-        print("!!!!!!!!!STARTED get_info_no_args")
-        print("!!!!!!!mogrify", self.cursor.mogrify(statement))
         self.cursor.execute(statement)
         return self.cursor.fetchall()
 
