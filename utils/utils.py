@@ -18,16 +18,16 @@ def message_parser(message):
     if len(message_split) < 2:
         alias = None
     elif len(message_split) == 2:
-        alias = message_split[1:].strip()
+        alias = " ".join(message_split[1:]).strip()
     else:
         alias = None
     if len(message_split) >= 3:
         network = message_split[-1].strip()
         if network.lower() not in ['фб', 'вк', 'ок', 'ok', 'тви', 'тытруба', 'youtube']:
             network = None
-            alias = message_split[1:].strip()
+            alias = " ".join(message_split[1:]).strip()
         else:
-            alias = message_split[1:-1].strip()
+            alias = " ".join(message_split[1:-1]).strip()
     else:
         network = None
     return alias, network

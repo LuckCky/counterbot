@@ -44,6 +44,8 @@ def get_fans(message):
         return
     bot.send_message(message.chat.id, "Ваш алиас соответствует ресурсу: {}".format(resource_name))
     # number_of_fans =
+    print("alias", alias)
+    print("network", network)
 
 
 
