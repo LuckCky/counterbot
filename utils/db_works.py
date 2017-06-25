@@ -46,3 +46,7 @@ class DBWorks(object):
     def get_info_one_arg(self, statement, value):
         self.cursor.execute(statement, (value,))
         return self.cursor.fetchall()
+
+    def get_info_two_args(self, statement, args):
+        self.cursor.execute(statement, *args)
+        return self.cursor.fetchall()

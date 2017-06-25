@@ -44,3 +44,13 @@ def get_resource_name_from_alias(alias):
     if not aliases_list:
         return None
     return aliases_list[0][0]
+
+
+def get_fans(resource_name, network=None):
+    number_of_fans = 0
+    if not network:
+        network = ['фб', 'вк', 'ок', 'тви', 'ютуб']
+    for element in network:
+        resource_id = cursor.get_info_two_args(conf.select_resource_id, (resource_name, element, ))
+        number_of_fans += conf.number_of_fans[element](resource_id)[0]
+    return number_of_fans

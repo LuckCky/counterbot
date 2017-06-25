@@ -8,11 +8,7 @@ import telebot
 
 import conf
 import utils.fill_db
-from social_stuff.fb import get_fb_fans
-from social_stuff.ok import get_ok_fans
-from social_stuff.twi import get_twi_fans
-from social_stuff.vk_info import get_vk_fans
-from social_stuff.youtube import get_youtube_fans
+
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias
 from utils.db_works import DBWorks
 
@@ -42,33 +38,10 @@ def get_fans(message):
     if not resource_name:
         bot.send_message(message.chat.id, "Неверный алиас для ресурса, попробуйте снова")
         return
+    # TODO remove next line when number of fans is done
     bot.send_message(message.chat.id, "Ваш алиас соответствует ресурсу: {}".format(resource_name))
-    # number_of_fans =
-    print("alias", alias)
-    print("network", network)
-
-
-
-    if network.lower() in ['фб', 'вк', 'ок', 'ok', 'тви', 'тытруба', 'youtube']:
-        page_name = message.text.split(' ')[1].strip()
-        if network.lower() == 'фб':
-            fans = get_fb_fans(page_name)
-        elif network.lower() == 'вк':
-            fans = get_vk_fans(page_name)
-        elif network.lower() == 'ок' or network.lower() == 'ok':
-            fans = get_ok_fans(page_name)
-        elif network.lower() == 'тви':
-            fans = get_twi_fans(page_name)
-        elif network.lower() == 'тытруба' or network.lower() == 'youtube':
-            fans = get_youtube_fans(page_name)
-        else:
-            fans = 'А соцсеть то указать забыли!'
-        if isinstance(fans, int):
-            reply = 'В группе {} {} сейчас {} подписчиков'.format(network, page_name, fans)
-        else:
-            reply = fans
-        bot.send_message(message.chat.id, reply)
-        return
+    number_of_fans = get_fans(resource_name, network)
+    bot.send_message(message.chat.id, "У ресурса {} колиество подписчиков {}".format(resource_name, number_of_fans))
 
 
 class WebhookServer(object):
