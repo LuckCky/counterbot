@@ -20,7 +20,7 @@ create_aliases_table = "CREATE TABLE aliases (" \
                        "resourceName VARCHAR(50), " \
                        "aliasesList VARCHAR(1000) ); "
 create_ids_table = "CREATE TABLE resourceIds " \
-                   "( projectID SERIAL, projectName VARCHAR(100), " \
+                   "( id SERIAL, projectID INTEGER, projectName VARCHAR(100), " \
                    "resourceName VARCHAR(100),  siteName VARCHAR(15), " \
                    "netAddress VARCHAR(200) ); "
 create_users_count_table = "CREATE TABLE usersCount " \
@@ -33,12 +33,14 @@ select_one_from_aliases = "SELECT resourceName from aliases WHERE aliasesList LI
 insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, %s ) ;"
 select_resource_id = "SELECT netAddress FROM resourceIds WHERE resourceName = ( %s ) " \
                      "AND siteName = ( %s )"
-insert_resource_ids = "INSERT INTO resourceIds (projectName, resourceName, siteName, netAddress ) " \
-                      "VALUES ( %s, %s, %s, %s ) ;"
+insert_resource_ids = "INSERT INTO resourceIds (projectID, projectName, resourceName, siteName, netAddress ) " \
+                      "VALUES ( %s, %s, %s, %s, %s ) ;"
+select_all_ids = "SELECT * FROM resourceIds;"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"
 aliases_sheet = "Алиасы"
+ids_sheet = "Список"
 
 # functions to get number of fans
 number_of_fans = {

@@ -51,6 +51,9 @@ def get_fans(resource_name, network=None):
     if not network:
         network = ['фб', 'вк', 'ок', 'тви', 'ютуб']
     for element in network:
+        print(element)
+        print(network)
         resource_id = cursor.get_info_two_args(conf.select_resource_id, (resource_name, element, ))
-        number_of_fans += conf.number_of_fans[element](resource_id)[0]
+        print(resource_id)
+        number_of_fans += conf.number_of_fans[element](resource_id)
     return number_of_fans
