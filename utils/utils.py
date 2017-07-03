@@ -3,7 +3,6 @@
 import conf
 from utils.db_works import DBWorks
 
-
 cursor = DBWorks()
 
 
@@ -49,6 +48,7 @@ def get_resource_name_from_alias(alias):
 def get_fans_count(resource_name, network_name):
     number_of_fans = 0
     network_list = []
+    error_text = ''
     if not network_name:
         network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
     else:
@@ -57,6 +57,8 @@ def get_fans_count(resource_name, network_name):
         args = (resource_name, element,)
         resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0][0]
         fans = conf.number_of_fans[element](resource_id)
-        
-        number_of_fans += fans
-    return number_of_fans
+        if isinstance(fans, str):
+            error_text += fans
+        else:
+            number_of_fans += fans
+    return number_of_fans, error_text

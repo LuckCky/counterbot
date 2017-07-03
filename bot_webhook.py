@@ -38,12 +38,17 @@ def get_fans(message):
     if not resource_name:
         bot.send_message(message.chat.id, "Неверный алиас для ресурса, попробуйте снова")
         return
-    number_of_fans = get_fans_count(resource_name, network)
+    number_of_fans, error_text = get_fans_count(resource_name, network)
+    if error_text:
+        bot.send_message(message.chat.id, "Тут ошибки возникли, вот текст: {}, "
+                                          "но я постараюсь по остальным соцсетям посчитать подписчиков"
+                         .format(error_text))
     if not network:
         message_to_send = "У ресурса {} количество подписчиков {}".format(resource_name, number_of_fans)
     else:
         message_to_send = "У ресурса {} количество подписчиков {} в {}".format(resource_name, number_of_fans, network)
     bot.send_message(message.chat.id, message_to_send)
+    return
 
 
 class WebhookServer(object):
