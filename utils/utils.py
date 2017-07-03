@@ -49,8 +49,6 @@ def get_resource_name_from_alias(alias):
 def get_fans_count(resource_name, network_name):
     number_of_fans = 0
     network_list = []
-    print(resource_name)
-    print(network_name)
     if not network_name:
         network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
     else:
@@ -58,7 +56,7 @@ def get_fans_count(resource_name, network_name):
     for element in network_list:
         print(element)
         args = (resource_name, element,)
-        resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0]
+        resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0][0]
         print(resource_id)
         fans = conf.number_of_fans[element]
         number_of_fans += fans(resource_id)
