@@ -54,11 +54,9 @@ def get_fans_count(resource_name, network_name):
     else:
         network_list.append(network_name)
     for element in network_list:
-        print(element)
         args = (resource_name, element,)
         resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0][0]
-        print(resource_id)
-        fans = conf.number_of_fans[element]
-        print(fans(resource_id))
-        number_of_fans += fans(resource_id)
+        fans = conf.number_of_fans[element](resource_id)
+        
+        number_of_fans += fans
     return number_of_fans
