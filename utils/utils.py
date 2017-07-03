@@ -49,6 +49,8 @@ def get_resource_name_from_alias(alias):
 def get_fans(resource_name, network_name):
     number_of_fans = 0
     network_list = []
+    print(resource_name)
+    print(network_name)
     if not network_name:
         network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
     else:
