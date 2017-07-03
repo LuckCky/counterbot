@@ -46,7 +46,7 @@ def get_resource_name_from_alias(alias):
     return aliases_list[0][0]
 
 
-def get_fans(resource_name, network_name):
+def get_fans_count(resource_name, network_name):
     number_of_fans = 0
     network_list = []
     print(resource_name)

@@ -9,7 +9,7 @@ import telebot
 import conf
 import utils.fill_db
 
-from utils.utils import message_parser, report_needed, get_resource_name_from_alias
+from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
 from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
@@ -38,9 +38,7 @@ def get_fans(message):
     if not resource_name:
         bot.send_message(message.chat.id, "Неверный алиас для ресурса, попробуйте снова")
         return
-    print("!!!", resource_name)
-    print("!!!", network)
-    number_of_fans = get_fans(resource_name, network)
+    number_of_fans = get_fans_count(resource_name, network)
     if not network:
         message_to_send = "У ресурса {} количество подписчиков {}".format(resource_name, number_of_fans)
     else:
