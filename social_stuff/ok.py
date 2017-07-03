@@ -3,8 +3,6 @@ import os
 
 import requests
 
-from social_stuff.groups import ok_groups
-
 application_id = os.environ.get('OK_APPLICATION_ID')
 application_key = os.environ.get('OK_APPLICATION_KEY')
 application_secret_key = os.environ.get('OK_APPLICATION_SECRET_KEY')
