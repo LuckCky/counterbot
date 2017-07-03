@@ -59,5 +59,6 @@ def get_fans_count(resource_name, network_name):
         resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0][0]
         print(resource_id)
         fans = conf.number_of_fans[element]
+        print(fans(resource_id))
         number_of_fans += fans(resource_id)
     return number_of_fans
