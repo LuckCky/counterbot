@@ -3,6 +3,8 @@ import os
 
 import requests
 
+from social_stuff.groups import ok_groups
+
 application_id = os.environ.get('OK_APPLICATION_ID')
 application_key = os.environ.get('OK_APPLICATION_KEY')
 application_secret_key = os.environ.get('OK_APPLICATION_SECRET_KEY')
@@ -19,7 +21,7 @@ def count_sig(group_id):
     return sig.hexdigest()
 
 
-def get_ok_fans(group_id):
+def get_ok_fans(group_id ):
     sig = count_sig(group_id)
     url = 'https://api.ok.ru/fb.do' \
           '?application_key={0}' \
