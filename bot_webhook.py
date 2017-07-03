@@ -38,7 +38,6 @@ def get_fans(message):
     if not resource_name:
         bot.send_message(message.chat.id, "Неверный алиас для ресурса, попробуйте снова")
         return
-    print("!!!!!!!!! HERE")
     number_of_fans = get_fans(resource_name, network)
     if not network:
         message_to_send = "У ресурса {} количество подписчиков {}".format(resource_name, number_of_fans)

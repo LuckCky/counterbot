@@ -23,7 +23,7 @@ def message_parser(message):
         alias = None
     if len(message_split) >= 3:
         network = message_split[-1].strip()
-        if network.lower() not in ['фб', 'вк', 'ок', 'ok', 'тви', 'тытруба', 'youtube']:
+        if network.lower() not in ['фб', 'вк', 'ок', 'тви', 'ютуб']:
             network = None
             alias = " ".join(message_split[1:]).strip()
         else:
@@ -46,13 +46,16 @@ def get_resource_name_from_alias(alias):
     return aliases_list[0][0]
 
 
-def get_fans(resource_name, network=None):
+def get_fans(resource_name, network_name):
     number_of_fans = 0
-    if not network:
-        network = ['фб', 'вк', 'ок', 'тви', 'ютуб']
-    for element in network:
+    network_list = []
+    if not network_name:
+        network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
+    else:
+        network_list.append(network_name)
+    for element in network_list:
         print(element)
-        print(network)
+        print(network_list)
         resource_id = cursor.get_info_two_args(conf.select_resource_id, (resource_name, element, ))
         print(resource_id)
         number_of_fans += conf.number_of_fans[element](resource_id)
