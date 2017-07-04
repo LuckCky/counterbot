@@ -61,4 +61,8 @@ def get_fans_count(resource_name, network_name):
             error_text += fans
         elif isinstance(fans, (float, int, )):
             number_of_fans += fans
+        print(element)
+        print(resource_name)
+        print(resource_id)
+        print(fans)
     return number_of_fans, error_text
