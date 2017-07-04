@@ -56,13 +56,11 @@ def get_fans_count(resource_name, network_name):
     for element in network_list:
         args = (resource_name, element,)
         resource_id = cursor.get_info_two_args(conf.select_resource_id, args)[0][0]
+        if not resource_id:
+            pass
         fans = conf.number_of_fans[element](resource_id)
         if isinstance(fans, str):
             error_text += fans
         elif isinstance(fans, (float, int, )):
             number_of_fans += fans
-        print(element)
-        print(resource_name)
-        print(resource_id)
-        print(fans)
     return number_of_fans, error_text
