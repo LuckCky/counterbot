@@ -21,7 +21,7 @@ def insert_aliases():
     try:
         for rownum in range(1, sheet.nrows):
             row = sheet.row_values(rownum)
-            cursor.cursor.execute(conf.insert_aliases, (row[0], row[1],))
+            cursor.cursor.execute(conf.insert_aliases, (row[0], row[1].lower(),))
     except Exception as e:
         print(e)
     finally:
