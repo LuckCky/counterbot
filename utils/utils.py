@@ -21,8 +21,8 @@ def message_parser(message):
     else:
         alias = None
     if len(message_split) >= 3:
-        network = message_split[-1].strip()
-        if network.lower() not in ['фб', 'вк', 'ок', 'тви', 'ютуб']:
+        network = message_split[-1].strip().lower()
+        if network not in ['фб', 'вк', 'ок', 'тви', 'ютуб']:
             network = None
             alias = " ".join(message_split[1:]).strip()
         else:
