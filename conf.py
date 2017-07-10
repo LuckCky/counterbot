@@ -36,6 +36,7 @@ select_resource_id = "SELECT netAddress FROM resourceIds WHERE resourceName = ( 
 insert_resource_ids = "INSERT INTO resourceIds (projectID, projectName, resourceName, siteName, netAddress ) " \
                       "VALUES ( %s, %s, %s, %s, %s ) ;"
 select_all_ids = "SELECT * FROM resourceIds;"
+select_all_names_from_aliases = "SELECT resourceName from aliases ;"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"

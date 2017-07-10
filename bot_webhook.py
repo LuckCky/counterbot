@@ -10,6 +10,7 @@ import conf
 import utils.fill_db
 
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
+from utils.utils import get_aliases_list
 from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
@@ -24,9 +25,9 @@ WEBHOOK_URL_PATH = "/{}/".format(token)
 bot = telebot.TeleBot(token)
 
 
-@bot.message_handler(content_types=['text', 'audio', 'document', 'photo', 'sticker', 'video',
-                                    'voice', 'location', 'contact'])
+@bot.message_handler(content_types=['text'])
 def get_fans(message):
+    get_aliases_list()
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:

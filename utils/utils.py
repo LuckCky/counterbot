@@ -32,10 +32,6 @@ def message_parser(message):
     return alias, network
 
 
-def valid_resource_name(resource_name):
-    return resource_name
-
-
 def get_resource_name_from_alias(alias):
     aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, "%" + alias.lower() + "%")
     if len(aliases_list) >= 2:
@@ -65,3 +61,8 @@ def get_fans_count(resource_name, network_name):
         elif isinstance(fans, (float, int, )):
             number_of_fans += fans
     return number_of_fans, error_text
+
+
+def get_aliases_list():
+    aliases_list = cursor.get_info_no_args(conf.select_all_names_from_aliases)
+    print(aliases_list)
