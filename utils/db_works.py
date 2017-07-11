@@ -35,7 +35,6 @@ class DBWorks(object):
             self.cursor.execute(conf.create_users_count_table)
             self.connection.commit()
         except psycopg2.ProgrammingError as error:
-            print("users count", error)
             self.connection.rollback()
         finally:
             self.connection.close()
