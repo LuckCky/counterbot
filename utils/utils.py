@@ -94,5 +94,8 @@ def get_all_fans_count(project_names_list):
                                   format(project_name, number_of_fans))
             now = datetime.datetime.now()
             cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
+        n = 1
+        print(result, n)
+        n += 1
         result.append(sub_result)
     return result
