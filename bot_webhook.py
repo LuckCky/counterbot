@@ -7,7 +7,7 @@ import cherrypy
 import telebot
 
 import conf
-from scheduler import Scheduler
+# from scheduler import Scheduler
 import utils.fill_db
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
 from utils.db_works import DBWorks
