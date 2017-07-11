@@ -56,6 +56,6 @@ class DBWorks(object):
             self.cursor.execute(statement, args)
             self.cursor.commit()
         except Exception as error:
-            self.cursor.rollback()
+            self.connection.rollback()
             return error
         return None
