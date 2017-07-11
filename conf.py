@@ -20,7 +20,7 @@ create_aliases_table = "CREATE TABLE aliases (" \
                        "resourceName VARCHAR(50), " \
                        "aliasesList VARCHAR(1000) ); "
 create_ids_table = "CREATE TABLE resourceIds " \
-                   "( id SERIAL, projectID INTEGER, projectName VARCHAR(100), " \
+                   "( id SERIAL, projectID INTEGER UNIQUE CONSTRAINT, projectName VARCHAR(100), " \
                    "resourceName VARCHAR(100),  siteName VARCHAR(15), " \
                    "netAddress VARCHAR(200) ); "
 create_users_count_table = "CREATE TABLE usersCount " \
