@@ -75,7 +75,7 @@ class WebhookServer(object):
 if __name__ == "__main__":
     DBWorks().fire_up_db()
     utils.fill_db.main()
-    Scheduler().add_get_all_fans_job()
+    # Scheduler().add_get_all_fans_job()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
