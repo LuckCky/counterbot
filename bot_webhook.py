@@ -30,9 +30,10 @@ from utils.utils import get_project_names_list, get_all_fans_count
 def get_fans(message):
     if message.text == "ну-ка, давай":
         project_names_list = get_project_names_list()
+        print(project_names_list)
         result = get_all_fans_count(project_names_list)
-        for message in result:
-            bot.send_message(message.chat.id, message)
+        for message_text in result:
+            bot.send_message(message.chat.id, message_text)
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:
