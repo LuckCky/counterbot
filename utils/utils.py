@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import datetime
+
 import conf
 from utils.db_works import DBWorks
 
@@ -22,7 +24,7 @@ def message_parser(message):
         alias = None
     if len(message_split) >= 3:
         network = message_split[-1].strip().lower()
-        if network not in ['фб', 'вк', 'ок', 'тви', 'ютуб']:
+        if network not in conf.network_list:
             network = None
             alias = " ".join(message_split[1:]).strip()
         else:
@@ -46,12 +48,12 @@ def get_fans_count(resource_name, network_name):
     network_list = []
     error_text = ''
     if not network_name:
-        network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
+        network_list = conf.network_list
     else:
         network_list.append(network_name)
     for element in network_list:
         args = (resource_name, element,)
-        resource_id = cursor.get_info_two_args(conf.select_resource_id, args)
+        resource_id = cursor.get_info_with_args(conf.select_resource_id_by_name, args)
         if not resource_id:
             break
         resource_id = resource_id[0][0]
@@ -63,6 +65,28 @@ def get_fans_count(resource_name, network_name):
     return number_of_fans, error_text
 
 
-def get_aliases_list():
-    aliases_list = cursor.get_info_no_args(conf.select_all_names_from_aliases)
-    print(aliases_list)
+def get_project_names_list():
+    projects = cursor.get_info_no_args(conf.select_all_names_from_aliases)
+    project_names_list = []
+    for project in projects:
+        project_names_list.append(project[0])
+    return project_names_list
+
+
+def get_all_fans_count(project_names_list):
+    networks_list = conf.network_list
+    result = []
+    for project_name in project_names_list:
+        for network_name in networks_list:
+            args = (project_name, network_name,)
+            project_id = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
+            number_of_fans = 0
+            if project_id:
+                for _id in project_id:
+                    fans = conf.number_of_fans[network_name](_id[1])
+                    number_of_fans += fans
+                result.append("По проекту {} количество подписчиков {}.".
+                              format(project_name, number_of_fans))
+                now = datetime.datetime.now()
+                cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
+    return result

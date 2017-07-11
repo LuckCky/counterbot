@@ -31,12 +31,16 @@ create_users_count_table = "CREATE TABLE usersCount " \
 select_all_aliases = "SELECT * from aliases;"
 select_one_from_aliases = "SELECT resourceName from aliases WHERE aliasesList LIKE %s ;"
 insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, %s ) ;"
-select_resource_id = "SELECT netAddress FROM resourceIds WHERE resourceName = ( %s ) " \
+select_resource_id_by_name = "SELECT netAddress FROM resourceIds WHERE resourceName = ( %s ) " \
                      "AND siteName = ( %s )"
 insert_resource_ids = "INSERT INTO resourceIds (projectID, projectName, resourceName, siteName, netAddress ) " \
                       "VALUES ( %s, %s, %s, %s, %s ) ;"
 select_all_ids = "SELECT * FROM resourceIds;"
 select_all_names_from_aliases = "SELECT resourceName from aliases ;"
+select_resource_id_by_project = "SELECT projectID, netAddress FROM resourceIds " \
+                                "WHERE projectName = ( %s ) AND siteName = ( %s )"
+insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
+              " VALUES ( %s, %s, %s ) ;"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"
@@ -51,3 +55,5 @@ number_of_fans = {
     "тви": get_twi_fans,
     "ютуб": get_youtube_fans
 }
+
+network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']

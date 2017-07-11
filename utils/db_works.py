@@ -47,6 +47,15 @@ class DBWorks(object):
         self.cursor.execute(statement, (value,))
         return self.cursor.fetchall()
 
-    def get_info_two_args(self, statement, args):
+    def get_info_with_args(self, statement, args):
         self.cursor.execute(statement, args)
         return self.cursor.fetchall()
+
+    def insert_info(self, statement, args):
+        try:
+            self.cursor.execute(statement, args)
+            self.cursor.commit()
+        except Exception as error:
+            self.cursor.rollback()
+            return error
+        return None

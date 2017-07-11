@@ -7,10 +7,9 @@ import cherrypy
 import telebot
 
 import conf
+from scheduler import Scheduler
 import utils.fill_db
-
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
-from utils.utils import get_aliases_list
 from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
@@ -24,10 +23,16 @@ WEBHOOK_URL_PATH = "/{}/".format(token)
 
 bot = telebot.TeleBot(token)
 
+from utils.utils import get_project_names_list, get_all_fans_count
+
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
-    get_aliases_list()
+    if message.text == "ну-ка, давай":
+        project_names_list = get_project_names_list()
+        result = get_all_fans_count(project_names_list)
+        for message in result:
+            bot.send_message(message.chat.id, message)
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:
@@ -70,6 +75,7 @@ class WebhookServer(object):
 if __name__ == "__main__":
     DBWorks().fire_up_db()
     utils.fill_db.main()
+    Scheduler().add_get_all_fans_job()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)

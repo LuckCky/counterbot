@@ -1,3 +1,4 @@
+apscheduler==3.3.1
 cherrypy==8.6.0
 facebook-sdk==2.0.0
 psycopg2==2.6.2
