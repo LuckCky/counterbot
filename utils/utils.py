@@ -77,22 +77,22 @@ def get_all_fans_count(project_names_list):
     networks_list = conf.network_list
     result = []
     for project_name in project_names_list:
+        sub_result = []
         for network_name in networks_list:
             args = (project_name, network_name,)
             project_id = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
             number_of_fans = 0
-            sub_result = []
             if project_id:
                 for _id in project_id:
                     fans = conf.number_of_fans[network_name](_id[1])
                     if isinstance(fans, str):
                         sub_result.append("По проекту {} произошла ошибка {}.".
-                                      format(project_name, fans))
+                                          format(project_name, fans))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
                 sub_result.append("По проекту {} количество подписчиков {}.".
-                              format(project_name, number_of_fans))
-                now = datetime.datetime.now()
-                cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
-            result.append(sub_result)
+                                  format(project_name, number_of_fans))
+            now = datetime.datetime.now()
+            cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
+        result.append(sub_result)
     return result
