@@ -80,8 +80,10 @@ def get_all_fans_count(project_names_list):
         sub_result = []
         for network_name in networks_list:
             args = (project_name, network_name,)
+            print(args)
             project_id = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
             number_of_fans = 0
+            print(project_id)
             if project_id:
                 for _id in project_id:
                     fans = conf.number_of_fans[network_name](_id[1])
