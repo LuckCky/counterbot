@@ -25,7 +25,7 @@ create_ids_table = "CREATE TABLE resourceIds " \
                    "netAddress VARCHAR(200) ); "
 create_users_count_table = "CREATE TABLE usersCount " \
                            "( id SERIAL, " \
-                           "projectID INTEGER REFERENCES resourceIds (projectID), " \
+                           "projectID INTEGER REFERENCES resourceIds (id), " \
                            "date TIMESTAMP, " \
                            "usersCount INTEGER ); "
 select_all_aliases = "SELECT * from aliases;"
