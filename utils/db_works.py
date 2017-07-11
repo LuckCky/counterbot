@@ -24,20 +24,18 @@ class DBWorks(object):
         try:
             self.cursor.execute(conf.create_aliases_table)
             self.connection.commit()
-            print("aliases done")
         except psycopg2.ProgrammingError:
             self.connection.rollback()
         try:
             self.cursor.execute(conf.create_ids_table)
             self.connection.commit()
-            print("ids done")
         except psycopg2.ProgrammingError:
             self.connection.rollback()
         try:
             self.cursor.execute(conf.create_users_count_table)
             self.connection.commit()
-            print("users count done")
-        except psycopg2.ProgrammingError:
+        except psycopg2.ProgrammingError as error:
+            print("users count", error)
             self.connection.rollback()
         finally:
             self.connection.close()
