@@ -54,7 +54,7 @@ class DBWorks(object):
     def insert_info(self, statement, args):
         try:
             self.cursor.execute(statement, args)
-            self.cursor.commit()
+            self.connection.commit()
         except Exception as error:
             self.connection.rollback()
             return error
