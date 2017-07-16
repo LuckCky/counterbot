@@ -47,6 +47,7 @@ def get_fans_count(resource_name, network_name):
     number_of_fans = 0
     network_list = []
     error_text = ''
+    network = None
     if not network_name:
         network_list = conf.network_list
     else:
@@ -79,33 +80,27 @@ def get_all_fans_count(project_names_list):
     result = []
     for project_name in project_names_list:
         sub_result = []
+        error_result = []
         number_of_fans = 0
         for network_name in networks_list:
             args = (project_name, network_name,)
-            print(args)
             project_id = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
-            print(project_id)
             if project_id:
                 for _id in project_id:
                     fans = conf.number_of_fans[network_name](_id[1])
-                    print('fans', fans)
                     if isinstance(fans, str):
-                        sub_result.append("По проекту {} произошла ошибка {}.".
-                                          format(project_name, fans))
+                        error_result.append("По проекту {} произошла ошибка {}.".
+                                            format(project_name, fans))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
-                print('number_of_fans', number_of_fans)
                 sub_result.append("По проекту {} количество подписчиков {}.".
                                   format(project_name, number_of_fans))
-                print("HERE!!!")
                 now = datetime.datetime.now()
                 error = cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
-                print(error)
                 if error:
                     sub_result.append("По проекту {} произошла ошибка при записи в БД {}.".
                                       format(project_name, error))
-        n = 1
-        print("NOW HERE!!!", result, n)
-        n += 1
         result.append(sub_result)
+        if error_result:
+            result.append(error_result)
     return result
