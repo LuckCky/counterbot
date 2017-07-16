@@ -46,9 +46,10 @@ def get_fans(message):
         return
     number_of_fans, error_text = get_fans_count(resource_name, network)
     if error_text:
-        bot.send_message(message.chat.id, "Тут ошибки возникли, вот текст: {}, "
+        bot.send_message(message.chat.id, "Тут ошибки возникли для проекта '{}' в '{}', "
+                                          "вот текст: '{}', "
                                           "но я постараюсь по остальным соцсетям посчитать подписчиков"
-                         .format(error_text))
+                         .format(resource_name, network, error_text))
     if not network:
         message_to_send = "У ресурса {} количество подписчиков {}".format(resource_name, number_of_fans)
     else:
