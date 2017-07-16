@@ -60,9 +60,10 @@ def get_fans_count(resource_name, network_name):
         fans = conf.number_of_fans[element](resource_id)
         if isinstance(fans, str):
             error_text += fans
+            network = element
         elif isinstance(fans, (float, int, )):
             number_of_fans += fans
-    return number_of_fans, error_text
+    return number_of_fans, error_text, network
 
 
 def get_project_names_list():
