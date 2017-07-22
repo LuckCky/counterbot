@@ -10,6 +10,7 @@ import conf
 # from scheduler import Scheduler
 import utils.fill_db
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
+from utils.utils import get_project_names_list, get_all_fans_count, get_report_size
 from utils.db_works import DBWorks
 
 token = os.environ.get('BOT_TOKEN')
@@ -23,16 +24,16 @@ WEBHOOK_URL_PATH = "/{}/".format(token)
 
 bot = telebot.TeleBot(token)
 
-from utils.utils import get_project_names_list, get_all_fans_count
-
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
-    if message.text == "ну-ка, давай":
+    report_size = get_report_size(message.text)
+    if report_size == "big":
         project_names_list = get_project_names_list()
         result = get_all_fans_count(project_names_list)
         for message_text in result:
             bot.send_message(message.chat.id, message_text)
+            return
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:
