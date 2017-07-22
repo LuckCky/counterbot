@@ -107,6 +107,6 @@ def get_all_fans_count(project_names_list):
 
 
 def get_report_size(text):
-    if text.lower == "отчет" or text.lower == "отчёт":
+    if text.lower() == "отчет" or text.lower() == "отчёт":
         return "big"
     return None
