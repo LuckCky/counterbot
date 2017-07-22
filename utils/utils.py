@@ -93,13 +93,13 @@ def get_all_fans_count(project_names_list):
                                             format(project_name, fans))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
-                sub_result.append("По проекту {} количество подписчиков {}.".
-                                  format(project_name, number_of_fans))
                 now = datetime.datetime.now()
                 error = cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
                 if error:
-                    sub_result.append("По проекту {} произошла ошибка при записи в БД {}.".
+                    sub_result.append("По проекту {} произошла ошибка при записи в БД '{}'.".
                                       format(project_name, error))
+        sub_result.append("По проекту {} количество подписчиков {}.".
+                          format(project_name, number_of_fans))
         result.append(sub_result)
         if error_result:
             result.append(error_result)
