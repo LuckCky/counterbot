@@ -33,7 +33,7 @@ def get_fans(message):
         result = get_all_fans_count(project_names_list)
         for message_text in result:
             bot.send_message(message.chat.id, message_text)
-            return
+        return
     if report_needed(message.text):
         alias, network = message_parser(message.text)
     else:
