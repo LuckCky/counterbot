@@ -89,8 +89,8 @@ def get_all_fans_count(project_names_list):
                 for _id in project_id:
                     fans = conf.number_of_fans[network_name](_id[1])
                     if isinstance(fans, str):
-                        error_result.append("По проекту {} произошла ошибка {}.".
-                                            format(project_name, fans))
+                        error_result.append("По проекту {} произошла ошибка '{}' в соцсети {}.".
+                                            format(project_name, fans, network_name))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
                 now = datetime.datetime.now()
