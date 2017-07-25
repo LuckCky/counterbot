@@ -78,6 +78,7 @@ def get_project_names_list():
 def get_all_fans_count(project_names_list):
     networks_list = conf.network_list
     result = []
+    total_number_of_fans = 0
     for project_name in project_names_list:
         sub_result = []
         error_result = []
@@ -93,6 +94,7 @@ def get_all_fans_count(project_names_list):
                                             format(project_name, fans, network_name))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
+                        total_number_of_fans += fans
                 now = datetime.datetime.now()
                 error = cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
                 if error:
@@ -103,6 +105,7 @@ def get_all_fans_count(project_names_list):
         result.append(sub_result)
         if error_result:
             result.append(error_result)
+    result.append("Общее число подписчиков по всем проектам: {}".format(total_number_of_fans))
     return result
 
 
