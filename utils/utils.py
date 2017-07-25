@@ -105,7 +105,7 @@ def get_all_fans_count(project_names_list):
         result.append(sub_result)
         if error_result:
             result.append(error_result)
-    result.append("Общее число подписчиков по всем проектам: {}".format(total_number_of_fans))
+    result.append("Общее число подписчиков по всем проектам: {}.".format(total_number_of_fans))
     return result
 
 
