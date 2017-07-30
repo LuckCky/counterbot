@@ -27,6 +27,7 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
+    print(message.chat.id)
     report_size = get_report_size(message.text)
     if report_size == "big":
         project_names_list = get_project_names_list()
