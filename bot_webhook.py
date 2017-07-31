@@ -56,6 +56,9 @@ def get_fans(message):
     else:
         message_to_send = "У ресурса {} количество подписчиков {} в {}".format(resource_name, number_of_fans, network)
     bot.send_message(message.chat.id, message_to_send)
+    if message.text == "бот, заряжай":
+        Scheduler().add_get_all_fans_job()
+        return
     return
 
 
@@ -77,7 +80,7 @@ class WebhookServer(object):
 if __name__ == "__main__":
     DBWorks().fire_up_db()
     utils.fill_db.main()
-    Scheduler().add_get_all_fans_job()
+    # Scheduler().add_get_all_fans_job()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
