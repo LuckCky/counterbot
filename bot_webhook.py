@@ -27,6 +27,12 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
+    if message.text == "бот, заряжай":
+        bot.send_message(message.chat.id, "Готовлюсь")
+        s = Scheduler()
+        s.add_get_all_fans_job()
+        bot.send_message(message.chat.id, "А готово!")
+        return
     report_size = get_report_size(message.text)
     if report_size == "big":
         project_names_list = get_project_names_list()
@@ -56,12 +62,6 @@ def get_fans(message):
     else:
         message_to_send = "У ресурса {} количество подписчиков {} в {}".format(resource_name, number_of_fans, network)
     bot.send_message(message.chat.id, message_to_send)
-    if message.text == "бот, заряжай":
-        bot.send_message(message.chat.id, "Готовлюсь")
-        s = Scheduler()
-        s.add_get_all_fans_job()
-        bot.send_message(message.chat.id, "А готово!")
-        return
     return
 
 
