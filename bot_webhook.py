@@ -7,7 +7,7 @@ import cherrypy
 import telebot
 
 import conf
-from scheduler import Scheduler
+# from scheduler import Scheduler
 import utils.fill_db
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
 from utils.utils import get_project_names_list, get_all_fans_count, get_report_size
@@ -27,12 +27,12 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
-    if message.text == "бот, заряжай":
-        bot.send_message(message.chat.id, "Готовлюсь")
-        s = Scheduler()
-        s.add_get_all_fans_job()
-        bot.send_message(message.chat.id, "А готово!")
-        return
+    # if message.text == "бот, заряжай":
+    #     bot.send_message(message.chat.id, "Готовлюсь")
+    #     s = Scheduler()
+    #     s.add_get_all_fans_job()
+    #     bot.send_message(message.chat.id, "А готово!")
+    #     return
     report_size = get_report_size(message.text)
     if report_size == "big":
         project_names_list = get_project_names_list()
