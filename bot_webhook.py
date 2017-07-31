@@ -58,6 +58,7 @@ def get_fans(message):
     bot.send_message(message.chat.id, message_to_send)
     if message.text == "бот, заряжай":
         Scheduler().add_get_all_fans_job()
+        bot.send_message(message.chat.id, "А готово!")
         return
     return
 
