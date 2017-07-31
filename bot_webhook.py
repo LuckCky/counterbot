@@ -7,7 +7,7 @@ import cherrypy
 import telebot
 
 import conf
-# from scheduler import Scheduler
+from scheduler import Scheduler
 import utils.fill_db
 from utils.utils import message_parser, report_needed, get_resource_name_from_alias, get_fans_count
 from utils.utils import get_project_names_list, get_all_fans_count, get_report_size
@@ -27,7 +27,6 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
-    bot.send_message(message.chat.id, message.chat.id)
     report_size = get_report_size(message.text)
     if report_size == "big":
         project_names_list = get_project_names_list()
@@ -78,7 +77,7 @@ class WebhookServer(object):
 if __name__ == "__main__":
     DBWorks().fire_up_db()
     utils.fill_db.main()
-    # Scheduler().add_get_all_fans_job()
+    Scheduler().add_get_all_fans_job()
     bot.remove_webhook()
     time.sleep(3)
     bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
