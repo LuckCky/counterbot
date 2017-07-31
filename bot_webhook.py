@@ -57,6 +57,7 @@ def get_fans(message):
         message_to_send = "У ресурса {} количество подписчиков {} в {}".format(resource_name, number_of_fans, network)
     bot.send_message(message.chat.id, message_to_send)
     if message.text == "бот, заряжай":
+        bot.send_message(message.chat.id, "Готовлюсь")
         s = Scheduler()
         s.add_get_all_fans_job()
         bot.send_message(message.chat.id, "А готово!")
