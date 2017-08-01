@@ -12,7 +12,7 @@ SCHEDULER.start()
 class Scheduler(object):
 
     def __init__(self):
-        self.hour = '12.00'
+        self.hour = '12'
 
     def add_get_all_fans_job(self):
         SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour)
