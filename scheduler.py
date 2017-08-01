@@ -12,7 +12,7 @@ SCHEDULER.start()
 class Scheduler(object):
 
     def __init__(self):
-        self.hour = '19.30'
+        self.hour = '20.00'
         self.hour1 = '23.00'
         self.hour2 = '00.00'
 
