@@ -24,3 +24,9 @@ class Scheduler(object):
 
     def add_get_all_fans_job2(self):
         SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour2)
+
+if __name__ == "__main__":
+    s = Scheduler()
+    s.add_get_all_fans_job()
+    s.add_get_all_fans_job1()
+    s.add_get_all_fans_job2()
