@@ -12,21 +12,11 @@ SCHEDULER.start()
 class Scheduler(object):
 
     def __init__(self):
-        self.hour = '20.00'
-        self.hour1 = '23.00'
-        self.hour2 = '00.00'
+        self.hour = '12.00'
 
     def add_get_all_fans_job(self):
-        SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour)#, misfire_grace_time=120)
-
-    def add_get_all_fans_job1(self):
-        SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour1)
-
-    def add_get_all_fans_job2(self):
-        SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour2)
+        SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour)
 
 if __name__ == "__main__":
     s = Scheduler()
     s.add_get_all_fans_job()
-    s.add_get_all_fans_job1()
-    s.add_get_all_fans_job2()
