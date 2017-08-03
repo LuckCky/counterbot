@@ -106,6 +106,11 @@ def get_all_fans_count(project_names_list):
         if error_result:
             result.append(error_result)
     result.append("Общее число подписчиков по всем проектам: {}.".format(total_number_of_fans))
+    now = datetime.datetime.now()
+    error = cursor.insert_info(conf.insert_all_users_data, (now, total_number_of_fans))
+    if error:
+        result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
+                      format(error))
     return result
 
 

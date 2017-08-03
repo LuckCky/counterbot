@@ -28,6 +28,10 @@ create_users_count_table = "CREATE TABLE usersCount " \
                            "projectID INTEGER, " \
                            "date TIMESTAMP, " \
                            "usersCount INTEGER ); "
+create_all_users_table = "CREATE TABLE totalUsersCount " \
+                         "( id SERIAL, " \
+                         "date TIMESTAMP, " \
+                         "totalUsersCount INTEGER );"
 select_all_aliases = "SELECT * from aliases;"
 select_one_from_aliases = "SELECT resourceName from aliases WHERE aliasesList LIKE %s ;"
 insert_aliases = "INSERT INTO aliases (resourceName, aliasesList ) VALUES ( %s, %s ) ;"
@@ -41,6 +45,7 @@ select_resource_id_by_project = "SELECT projectID, netAddress FROM resourceIds "
                                 "WHERE projectName = ( %s ) AND siteName = ( %s )"
 insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
               " VALUES ( %s, %s, %s ) ;"
+insert_all_users_data = "INSERT INTO totalUsersCount (date, totalUsersCount) VALUES (%s, %s);"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"
