@@ -46,7 +46,7 @@ select_resource_id_by_project = "SELECT projectID, netAddress FROM resourceIds "
 insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
               " VALUES ( %s, %s, %s ) ;"
 insert_all_users_data = "INSERT INTO totalUsersCount (date, totalUsersCount) VALUES (%s, %s);"
-select_last_users_data = "SELECT * FROM usersCount ORDER BY date DESC limit 1 ; "
+select_last_users_data = "SELECT * FROM totalUsersCount ORDER BY date DESC limit 1 ; "
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"
