@@ -111,6 +111,8 @@ def get_all_fans_count(project_names_list):
     if error:
         result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
                       format(error))
+    yesterday_number_of_fans = cursor.get_info_no_args(conf.select_last_users_data)
+    print(yesterday_number_of_fans)
     return result
 
 
