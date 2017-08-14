@@ -107,12 +107,13 @@ def get_all_fans_count(project_names_list):
             result.append(error_result)
     result.append("Общее число подписчиков по всем проектам: {}.".format(total_number_of_fans))
     now = datetime.datetime.now()
+    previous_total_number_of_fans = cursor.get_info_no_args(conf.select_last_users_data)
     error = cursor.insert_info(conf.insert_all_users_data, (now, total_number_of_fans))
     if error:
         result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
                       format(error))
-    yesterday_number_of_fans = cursor.get_info_no_args(conf.select_last_users_data)
-    print(yesterday_number_of_fans)
+    print(previous_total_number_of_fans)
+    # TODO check if previous number is older than one day and append result if yes
     return result
 
 
