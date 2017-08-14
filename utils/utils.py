@@ -114,10 +114,13 @@ def get_all_fans_count(project_names_list):
                       format(error))
     time_delta = get_time_delta(fans_record)
     if time_delta >= datetime.timedelta(0):
+        print(total_number_of_fans)
+        print(fans_record[0][0])
         fans_diff = total_number_of_fans - fans_record[0][0]
         print(fans_diff)
+        previos_date = fans_record[0][1].strftime("%Y-%m-%d")
         result.append("Разница количества подписчиков с {} составила {}.".
-                      format(fans_record[0][1], fans_diff))
+                      format(previos_date, fans_diff))
     # TODO check if previous number is older than one day and append result if yes
     return result
 
