@@ -115,10 +115,10 @@ def get_all_fans_count(project_names_list):
     time_delta = get_time_delta(fans_record)
     print(time_delta)
     if time_delta >= 1:
-        fans_diff = total_number_of_fans - fans_record[0]
+        fans_diff = total_number_of_fans - fans_record[0][0]
         print(fans_diff)
         result.append("Разница количества подписчиков с {} составила {}.".
-                      format(fans_record[1], fans_diff))
+                      format(fans_record[0][1], fans_diff))
     # TODO check if previous number is older than one day and append result if yes
     return result
 
@@ -130,8 +130,5 @@ def get_report_size(text):
 
 
 def get_time_delta(fans_record):
-    record_date = fans_record[1]
-    print(record_date)
-    print(datetime.datetime.now())
-    print(datetime.datetime.now() - record_date)
+    record_date = fans_record[0][1]
     return datetime.datetime.now() - record_date
