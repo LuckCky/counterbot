@@ -107,13 +107,18 @@ def get_all_fans_count(project_names_list):
             result.append(error_result)
     result.append("Общее число подписчиков по всем проектам: {}.".format(total_number_of_fans))
     now = datetime.datetime.now()
-    previous_total_number_of_fans = cursor.get_info_no_args(conf.select_last_users_data)
+    fans_record = cursor.get_info_no_args(conf.select_last_users_data)
     error = cursor.insert_info(conf.insert_all_users_data, (now, total_number_of_fans))
     if error:
         result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
                       format(error))
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!1")
-    print(previous_total_number_of_fans)
+    time_delta = get_time_delta(fans_record)
+    print(time_delta)
+    if time_delta >= 1:
+        fans_diff = total_number_of_fans - fans_record[0]
+        print(fans_diff)
+        result.append("Разница количества подписчиков с {} составила {}.".
+                      format(fans_record[1], fans_diff))
     # TODO check if previous number is older than one day and append result if yes
     return result
 
@@ -122,3 +127,8 @@ def get_report_size(text):
     if text.lower() == "отчет" or text.lower() == "отчёт":
         return "big"
     return None
+
+
+def get_time_delta(fans_record):
+    record_date = fans_record[1]
+    return datetime.datetime.now() - record_date
