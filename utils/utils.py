@@ -112,6 +112,7 @@ def get_all_fans_count(project_names_list):
     if error:
         result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
                       format(error))
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!1")
     print(previous_total_number_of_fans)
     # TODO check if previous number is older than one day and append result if yes
     return result
