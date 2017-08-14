@@ -113,8 +113,7 @@ def get_all_fans_count(project_names_list):
         result.append("Произошла ошибка при записи в БД общего числа пользователей: '{}'.".
                       format(error))
     time_delta = get_time_delta(fans_record)
-    print(time_delta)
-    if time_delta >= datetime.timedelta(1):
+    if time_delta >= datetime.timedelta(0):
         fans_diff = total_number_of_fans - fans_record[0][0]
         print(fans_diff)
         result.append("Разница количества подписчиков с {} составила {}.".
