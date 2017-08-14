@@ -131,4 +131,7 @@ def get_report_size(text):
 
 def get_time_delta(fans_record):
     record_date = fans_record[1]
+    print(record_date)
+    print(datetime.datetime.now())
+    print(datetime.datetime.now() - record_date)
     return datetime.datetime.now() - record_date
