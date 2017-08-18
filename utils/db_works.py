@@ -50,6 +50,7 @@ class DBWorks(object):
 
     def get_info_one_arg(self, statement, value):
         self.cursor.execute(statement, (value,))
+        print(self.cursor.fetchall())
         return self.cursor.fetchall()
 
     def get_info_with_args(self, statement, args):
