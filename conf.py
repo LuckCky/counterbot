@@ -47,6 +47,7 @@ insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
               " VALUES ( %s, %s, %s ) ;"
 insert_all_users_data = "INSERT INTO totalUsersCount (date, totalUsersCount) VALUES (%s, %s);"
 select_last_users_data = "SELECT * FROM totalUsersCount ORDER BY date DESC limit 1 ; "
+select_all_user_per_date = "SELECT * FROM totalUsersCount ORDER BY date ASC limit 1 WHERE date = (%s);"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler.xls"
