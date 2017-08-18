@@ -107,11 +107,8 @@ def get_all_fans_count(project_names_list):
             result.append(error_result)
     result.append("Общее число подписчиков по всем проектам: {}.".format(total_number_of_fans))
     now = datetime.datetime.now()
-    print("now", now)
     yesterday = now - datetime.timedelta(1)
-    print("yesterday", yesterday)
     yesterday_fans_record = cursor.get_info_one_arg(conf.select_all_user_per_date, yesterday)
-    print(yesterday_fans_record)
     if not yesterday_fans_record:
         yesterday_fans_record = cursor.get_info_no_args(conf.select_last_users_data)
     error = cursor.insert_info(conf.insert_all_users_data, (now, total_number_of_fans))
