@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # http://blog.lwolf.org/post/2014-06-16-obtaining-never-expiring-access-token-to-post-on-facebook-page/
 
 # Facebook SDK

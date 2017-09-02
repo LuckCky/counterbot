@@ -5,6 +5,7 @@ from social_stuff.ok import get_ok_fans
 from social_stuff.twi import get_twi_fans
 from social_stuff.vk_info import get_vk_fans
 from social_stuff.youtube import get_youtube_fans
+from social_stuff.g_plus import get_g_plus_fans
 
 # Your own chat id. Ask https://telegram.me/my_id_bot to tell you yours
 my_id = ''
@@ -13,6 +14,7 @@ my_id = ''
 webhook_listen = '0.0.0.0'
 
 post_url = 'https://guarded-tundra-24703.herokuapp.com/'
+g_plus_url_base = 'https://www.googleapis.com/plus/v1/people/{page_url}?key={token}'
 
 # SQL
 create_aliases_table = "CREATE TABLE aliases (" \
@@ -60,7 +62,8 @@ number_of_fans = {
     "вк": get_vk_fans,
     "ок": get_ok_fans,
     "тви": get_twi_fans,
-    "ютуб": get_youtube_fans
+    "ютуб": get_youtube_fans,
+    "g+": get_g_plus_fans,
 }
 
-network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб']
+network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб', 'g+']
