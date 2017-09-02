@@ -3,10 +3,8 @@
 import os
 import requests
 
-import conf
-
 token = os.environ.get('G_PLUS_TOKEN')
-url_base = conf.g_plus_url_base
+url_base = 'https://www.googleapis.com/plus/v1/people/{page_url}?key={token}'
 
 
 def get_data(url):

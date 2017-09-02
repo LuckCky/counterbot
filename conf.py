@@ -14,7 +14,6 @@ my_id = ''
 webhook_listen = '0.0.0.0'
 
 post_url = 'https://guarded-tundra-24703.herokuapp.com/'
-g_plus_url_base = 'https://www.googleapis.com/plus/v1/people/{page_url}?key={token}'
 
 # SQL
 create_aliases_table = "CREATE TABLE aliases (" \
