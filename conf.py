@@ -6,6 +6,7 @@ from social_stuff.twi import get_twi_fans
 from social_stuff.vk_info import get_vk_fans
 from social_stuff.youtube import get_youtube_fans
 from social_stuff.g_plus import get_g_plus_fans
+from social_stuff.inst import get_bloggers
 
 # Your own chat id. Ask https://telegram.me/my_id_bot to tell you yours
 my_id = ''
@@ -62,7 +63,8 @@ number_of_fans = {
     "ок": get_ok_fans,
     "тви": get_twi_fans,
     "ютуб": get_youtube_fans,
-    "g+": get_g_plus_fans,
+    "г+": get_g_plus_fans,
+    "инст": get_bloggers,
 }
 
-network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб', 'g+']
+network_list = ['фб', 'вк', 'ок', 'тви', 'ютуб', 'г+', 'инст']
