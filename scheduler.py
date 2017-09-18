@@ -13,7 +13,7 @@ class Scheduler(object):
 
     def __init__(self):
         self.hour = 19
-        self.minute = 41
+        self.minute = 45
 
     def add_get_all_fans_job(self):
         SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour, minute=self.minute)
