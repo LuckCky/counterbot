@@ -20,3 +20,4 @@ class Scheduler(object):
 if __name__ == "__main__":
     s = Scheduler()
     s.add_get_all_fans_job()
+    print("I started!!!!!!!")

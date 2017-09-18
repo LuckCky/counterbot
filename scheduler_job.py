@@ -13,6 +13,7 @@ bot = telebot.TeleBot(token)
 
 
 def get_all_fans_job():
+    print("!!!!!!!!11 scheduler started!!!!!!!")
     project_names_list = get_project_names_list()
     result = get_all_fans_count(project_names_list)
     for message in result:
