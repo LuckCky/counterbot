@@ -16,8 +16,3 @@ class Scheduler(object):
 
     def add_get_all_fans_job(self):
         SCHEDULER.add_job(get_all_fans_job(), 'cron', hour=self.hour)
-
-if __name__ == "__main__":
-    s = Scheduler()
-    s.add_get_all_fans_job()
-    print("I started!!!!!!!")
