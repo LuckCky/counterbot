@@ -1,1 +1,2 @@
-clock: python3 clock.py
+web: python3 bot_webhook.py
+clock: python clock.py
