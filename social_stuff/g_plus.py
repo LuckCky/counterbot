@@ -2,6 +2,8 @@
 
 import os
 import requests
+from set_vars import set_vars
+set_vars()
 
 token = os.environ.get('G_PLUS_TOKEN')
 url_base = 'https://www.googleapis.com/plus/v1/people/{page_url}?key={token}'

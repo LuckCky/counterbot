@@ -3,6 +3,8 @@
 import os
 
 import requests
+from set_vars import set_vars
+set_vars()
 
 api_key = os.environ.get('YOUTUBE_API_KEY')
 

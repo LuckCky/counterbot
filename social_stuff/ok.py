@@ -4,6 +4,8 @@ import hashlib
 import os
 
 import requests
+from set_vars import set_vars
+set_vars()
 
 application_id = os.environ.get('OK_APPLICATION_ID')
 application_key = os.environ.get('OK_APPLICATION_KEY')

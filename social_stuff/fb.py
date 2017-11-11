@@ -3,6 +3,9 @@
 import os
 import facebook
 
+from set_vars import set_vars
+set_vars()
+
 token = os.environ.get('FB_TOKEN')
 
 

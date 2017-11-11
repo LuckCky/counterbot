@@ -3,6 +3,8 @@
 import os
 
 import twitter
+from set_vars import set_vars
+set_vars()
 
 consumer_key = os.environ.get('TWI_CONSUMER_KEY')
 consumer_secret = os.environ.get('TWI_CONSUMER_SECRET')
