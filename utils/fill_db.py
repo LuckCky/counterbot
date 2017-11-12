@@ -56,7 +56,7 @@ def insert_ids():
         for rownum in range(1, sheet.nrows):
             row = sheet.row_values(rownum)
             cursor.cursor.execute(conf.insert_resource_ids, (
-                int(row[1]), row[2], row[3], row[4], row[5],))
+                int(row[1]), row[2], row[3], row[4], row[5].split('/')[-1],))
             fill_db_logger.info('ids table filled up')
     except Exception as e:
         print(e)

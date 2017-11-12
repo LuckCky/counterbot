@@ -52,7 +52,7 @@ select_last_users_data = "SELECT * FROM totalUsersCount ORDER BY date DESC limit
 select_all_user_per_date = "SELECT * FROM totalUsersCount WHERE date = (%s) ORDER BY date ASC limit 1 ;"
 
 # xls with questions
-rambler_configs_xls = "utils/Rambler.xls"
+rambler_configs_xls = "utils/Rambler_SMM.xls"
 aliases_sheet = "Алиасы"
 ids_sheet = "Список"
 
