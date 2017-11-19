@@ -33,16 +33,6 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(content_types=['text'])
 def get_fans(message):
     bot_log.info('message received: {} from chat {}'.format(message.text, message.chat.id))
-    # if message.text == "бот, заряжай":
-    #     bot.send_message(message.chat.id, "Готовлюсь")
-    #     bot_log.info('preparing to start scheduler')
-    #     s = Scheduler()
-    #     bot_log.info('scheduler instance created')
-    #     bot_log.info('preparing to add job')
-    #     s.add_get_all_fans_job()
-    #     bot_log.info('job added')
-    #     bot.send_message(message.chat.id, "А готово!")
-    #     return
     report_size = get_report_size(message.text)
     bot_log.info('defined report size:', report_size)
     if report_size == "big":

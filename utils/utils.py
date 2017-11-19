@@ -68,28 +68,28 @@ def get_fans_count(resource_name, network_name):
     for element in network_list:
         args = (resource_name, element,)
         resource_id = cursor.get_info_with_args(conf.select_resource_id_by_name, args)
-        if not resource_id:
-            break
-        resource_id = resource_id[0][0]
-        fans = conf.number_of_fans[element](resource_id)
-        utils_logger.info('got fans count')
-        if isinstance(fans, str):
-            error_text += fans
-            network = element
-            utils_logger.info('got error {} for network {}'.format(fans, network))
-        elif isinstance(fans, (float, int, )):
-            number_of_fans += fans
+        if resource_id:
+            resource_id = resource_id[0][0]
+            fans = conf.number_of_fans[element](resource_id)
+            utils_logger.info('got fans count')
+            if isinstance(fans, str):
+                error_text += fans
+                network = element
+                utils_logger.info('got error {} for network {}'.format(fans, network))
+            elif isinstance(fans, (float, int, )):
+                number_of_fans += fans
     utils_logger.info('returning all fans count, error text and networks')
     return number_of_fans, error_text, network
 
 
 def get_project_names_list():
     utils_logger.info('starting getting project names list')
-    projects = cursor.get_info_no_args(conf.select_all_names_from_aliases)
+    # projects = cursor.get_info_no_args(conf.select_all_names_from_aliases)
+    projects = cursor.get_info_no_args(conf.select_all_names_from_resource_ids)
     utils_logger.info('got project from db {}'.format(str(projects)))
     project_names_list = []
     for project in projects:
-        project_names_list.append(project[0])
+        project_names_list.append(project[0]) if project[0] not in project_names_list else None
     utils_logger.info('returning projects names list {}'.format(str(project_names_list)))
     return project_names_list
 

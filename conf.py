@@ -43,6 +43,7 @@ insert_resource_ids = "INSERT INTO resourceIds (projectID, projectName, resource
                       "VALUES ( %s, %s, %s, %s, %s ) ;"
 select_all_ids = "SELECT * FROM resourceIds;"
 select_all_names_from_aliases = "SELECT resourceName from aliases ;"
+select_all_names_from_resource_ids = "SELECT projectName from resourceIds ;"
 select_resource_id_by_project = "SELECT projectID, netAddress FROM resourceIds " \
                                 "WHERE projectName = ( %s ) AND siteName = ( %s )"
 insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
