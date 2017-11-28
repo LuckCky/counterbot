@@ -103,24 +103,35 @@ def get_all_fans_count(project_names_list):
         sub_result = []
         error_result = []
         number_of_fans = 0
+        total_fans_last_time = 0
         for network_name in networks_list:
             args = (project_name, network_name,)
-            project_id = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
-            if project_id:
-                for _id in project_id:
+            project_data = cursor.get_info_with_args(conf.select_resource_id_by_project, args)
+            if project_data:
+                project_network_fans = 0
+                for _id in project_data:
                     fans = conf.number_of_fans[network_name](_id[1])
                     if isinstance(fans, str):
                         error_result.append("По проекту {} произошла ошибка '{}' в соцсети {}.".
                                             format(project_name, fans, network_name))
                     elif isinstance(fans, (float, int,)):
                         number_of_fans += fans
+                        project_network_fans += fans
                 now = datetime.datetime.now()
-                error = cursor.insert_info(conf.insert_data, (project_id[0][0], now, number_of_fans))
+                error = cursor.insert_info(conf.insert_data, (project_data[0][0], now, project_network_fans))
                 if error:
                     sub_result.append("По проекту {} произошла ошибка при записи в БД '{}'.".
                                       format(project_name, error))
-        sub_result.append("По проекту {} количество подписчиков {}.".
-                          format(project_name, number_of_fans))
+                args = (project_data[0][0], )
+                fans_last_time = cursor.get_info_one_arg(conf.select_previous_count_of_fans, args)
+                total_fans_last_time += int(fans_last_time[1][3])
+        if total_fans_last_time != 0:
+            fans_diff = number_of_fans - total_fans_last_time
+            sub_result.append("По проекту {} количество подписчиков {}. ({})".
+                              format(project_name, number_of_fans, fans_diff))
+        else:
+            sub_result.append("По проекту {} количество подписчиков {}. Разницу посчитать не смог".
+                              format(project_name, number_of_fans))
         total_number_of_fans += number_of_fans
         result.append(sub_result)
         if error_result:

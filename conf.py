@@ -51,6 +51,7 @@ insert_data = "INSERT INTO usersCount (projectID, date, usersCount )" \
 insert_all_users_data = "INSERT INTO totalUsersCount (date, totalUsersCount) VALUES (%s, %s);"
 select_last_users_data = "SELECT * FROM totalUsersCount ORDER BY date DESC limit 1 ; "
 select_all_user_per_date = "SELECT * FROM totalUsersCount WHERE date = (%s) ORDER BY date ASC limit 1 ;"
+select_previous_count_of_fans = "SELECT * FROM usersCount WHERE projectID = (%s) order by date DESC limit 2;"
 
 # xls with questions
 rambler_configs_xls = "utils/Rambler_SMM.xls"
