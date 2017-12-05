@@ -8,7 +8,6 @@ import telebot
 
 import conf
 from logger import init_logger
-from scheduler import Scheduler
 from set_vars import set_vars
 set_vars()
 import utils.fill_db
@@ -21,9 +20,9 @@ bot_log = init_logger('bot logger')
 token = os.environ.get('BOT_TOKEN')
 CHAT_ID = os.environ.get('CHAT_ID')
 
+# should be used with webhook server
 # WEBHOOK_PORT = int(os.environ.get('PORT', '5000'))
 # WEBHOOK_LISTEN = conf.webhook_listen
-
 # WEBHOOK_URL_BASE = conf.post_url
 # WEBHOOK_URL_PATH = "/{}/".format(token)
 
@@ -102,7 +101,6 @@ if __name__ == "__main__":
     bot.remove_webhook()
     bot_log.info('webhook removed')
     bot_log.info('starting scheduler')
-    # Scheduler().add_get_all_fans_job()
     # time.sleep(3)
     # bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
     #

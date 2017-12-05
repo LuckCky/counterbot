@@ -13,6 +13,11 @@ utils_logger.info('cursor for utils initialized')
 
 
 def report_needed(message):
+    """
+    decide if user wants report in his message
+    :param message: user message
+    :return: true or false
+    """
     if message.lower().startswith('отчёт') or message.lower().startswith('отчет'):
         utils_logger.info('report needed for message: {}'.format(message))
         return True
@@ -20,6 +25,11 @@ def report_needed(message):
 
 
 def message_parser(message):
+    """
+    parse message if user sent alias and/or network
+    :param message: user message
+    :return: alias, network or None
+    """
     utils_logger.info('message parser started')
     message_split = message.split(' ')
     if len(message_split) < 2:
@@ -42,7 +52,12 @@ def message_parser(message):
 
 
 def get_resource_name_from_alias(alias):
-    utils_logger.info('getting recource name from alias {}'.format(alias))
+    """
+    get resources names from DB by their aliases
+    :param alias:
+    :return:
+    """
+    utils_logger.info('getting resource name from alias {}'.format(alias))
     aliases_list = cursor.get_info_one_arg(conf.select_one_from_aliases, "%" + alias.lower() + "%")
     if len(aliases_list) >= 2:
         utils_logger.info('returning False')
