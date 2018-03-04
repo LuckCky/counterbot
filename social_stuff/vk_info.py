@@ -8,7 +8,7 @@ def get_vk_fans(group_name):
     session = vk.Session()
     api = vk.API(session)
     try:
-        group_info = api.groups.getById(group_id=group_name, fields='members_count')
+        group_info = api.groups.getById(group_id=group_name, fields='members_count', v='5.73.')
     except vk.exceptions.VkAPIError as e:
         if e.code == 100:
             return 'Неверное имя группы. Может там точку надо поставить или ru добавить?'
