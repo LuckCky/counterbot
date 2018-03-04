@@ -59,7 +59,6 @@ def insert_ids():
                 int(row[1]), row[2], row[3], row[4], row[5].split('/')[-1],))
             fill_db_logger.info('ids table filled up')
     except Exception as e:
-        print(e)
         fill_db_logger.error('errors during filling ids: {}'.format(e))
     finally:
         cursor.cursor.connection.commit()
